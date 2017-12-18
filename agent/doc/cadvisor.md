@@ -2,7 +2,14 @@
 
 - [ ] does it use runc to obtain container information
 - [ ] does it use go-ps like library to monitor host
+- [ ] does it handle container that is started after cAdvisor has started, if so, how? API or watch folder
+  - in `manager/watcher` seems to be watching pseudo-fs
 
+- machine hardware info, CPU freq, topology, huge page, kernel etc.
+- manager
+  - watcher watch container add/delete
+  - manager.go use in memory cache, check if using docker/rkt/systemd(?)
+  - container.go get pids by parsing `ps` output
 - metrics
  - prometheus.go seems can be auto generated
 - pages
