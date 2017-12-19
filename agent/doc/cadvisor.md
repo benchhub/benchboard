@@ -5,6 +5,36 @@
 - [ ] does it handle container that is started after cAdvisor has started, if so, how? API or watch folder
   - in `manager/watcher` seems to be watching pseudo-fs
 
+- accelerators GPU support
+  - nvidia.go using [mindprince/gonvml](https://github.com/mindprince/gonvml) @mindprince works for google ...
+- api API handlers
+- build
+- cache
+  - memory in memory store (map and slices I suppose)
+  - cache.go interface
+- client REST API client for v1 and v2
+- collector
+  - generic_collector.go
+  - prometheus_collector.go
+- container
+  - containerd grpc + API
+  - crio [CRI-O](https://github.com/kubernetes-incubator/cri-o) a runtime bridge for OCI and k8s?
+  - docker
+  - libcontainer seems only have helpers
+  - raw ?
+  - rkt
+  - systemd ... New returns `Not yet supported`
+  - testing mock
+- deploy Dockerfile
+- devicemapper
+- docs API, issue labels, development workflow
+- events used by watcher?
+- fs file system
+- healthz http handler that returns 200
+- http handlers
+- info
+  - v2 the new API types, struct for info and specs
+- integration integration test
 - machine hardware info, CPU freq, topology, huge page, kernel etc.
 - manager
   - watcher watch container add/delete
