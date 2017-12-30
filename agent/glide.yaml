@@ -1,0 +1,9 @@
+package: github.com/benchub/benchboard/agent
+import:
+# TODO: we might even swap out pkg/errors in the end
+- package: github.com/pkg/errors
+  vcs: git
+  version: 0.8.0
+- package: github.com/dyweb/gommon
+  vcs: git
+  version: 14c2d14725f9ccdba39e74593eb9f0fc32935763
