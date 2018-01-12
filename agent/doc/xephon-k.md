@@ -9,3 +9,4 @@ Xephon-K also has its own collector, though I think it's never put into real use
     - used by https://github.com/influxdata/telegraf/blob/master/plugins/inputs/system/cpu.go 
   - https://github.com/cloudfoundry/gosigar
   - https://github.com/elastic/beats/tree/master/metricbeat/module/system
+  - GoSigar fork w/ cgroup by Elastic https://github.com/elastic/gosigar/tree/master/cgroup 

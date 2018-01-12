@@ -4,6 +4,7 @@ import:
 - package: github.com/pkg/errors
   vcs: git
   version: 0.8.0
+# FIXME: we are using make sync-gommon to sync local gommon/log
 - package: github.com/dyweb/gommon
   vcs: git
-  version: 14c2d14725f9ccdba39e74593eb9f0fc32935763
+  version: e8ce0d75d07c52c78df276396b96911d3006abe1
