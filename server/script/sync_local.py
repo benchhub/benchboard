@@ -3,6 +3,7 @@
 import os
 from shutil import copytree, ignore_patterns, rmtree
 
+# Deprecated, we can just use local version and let go look up GOPATH
 # hard coded path to sync local gommon to vendor folder
 # https://github.com/benchhub/benchboard/issues/4
 

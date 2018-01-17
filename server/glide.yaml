@@ -1,0 +1,10 @@
+package: github.com/benchub/benchboard/server
+import:
+# TODO: we might even swap out pkg/errors in the end
+- package: github.com/pkg/errors
+  vcs: git
+  version: 0.8.0
+# FIXME: we are using local gommon/log
+# - package: github.com/dyweb/gommon
+#   vcs: git
+#   version: e8ce0d75d07c52c78df276396b96911d3006abe1
