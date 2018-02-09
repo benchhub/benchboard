@@ -5,3 +5,7 @@ FLAGS = -X $(PKG)/common.version=$(VERSION) -X $(PKG)/common.gitCommit=$(BUILD_C
 .PHONY: install
 install:
 	go install -ldflags "$(FLAGS)" ./cmd/benchboard
+
+.PHONY: fmt
+fmt:
+	gofmt -d -l -w ./cmd ./lib ./pkg ./plugin

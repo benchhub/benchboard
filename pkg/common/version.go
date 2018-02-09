@@ -22,4 +22,3 @@ func BuildTime() string {
 func BuildUser() string {
 	return buildUser
 }
-

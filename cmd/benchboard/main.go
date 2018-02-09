@@ -25,6 +25,7 @@ func main() {
 		ice.LogRegistry(log),
 	)
 	root := ice.NewCmd(app)
+	root.AddCommand(globalInitCmd, initCmd, statusCmd)
 	if err := root.Execute(); err != nil {
 		fmt.Println(os.Stderr, err)
 		os.Exit(1)
