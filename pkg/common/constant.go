@@ -1,5 +1,6 @@
 package common
 
 const (
-	Dir = ".benchboard"
+	Dir        = ".benchboard"
+	ConfigFile = "benchboard.yml"
 )

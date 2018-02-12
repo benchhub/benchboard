@@ -1,2 +1,2 @@
-# Benchboard Server
+# Benchboard
 

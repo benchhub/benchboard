@@ -1,11 +1,9 @@
 package main
 
 import (
-	"github.com/benchhub/benchboard/pkg/common"
-	"github.com/spf13/cobra"
 	"os"
-	"os/user"
-	"path/filepath"
+
+	"github.com/spf13/cobra"
 )
 
 var globalInitCmd = &cobra.Command{
@@ -13,13 +11,7 @@ var globalInitCmd = &cobra.Command{
 	Short: "create user home .benchboard directory",
 	Long:  "Create user home .benchboard directory",
 	Run: func(cmd *cobra.Command, args []string) {
-		// https://stackoverflow.com/questions/7922270/obtain-users-home-directory
-		u, err := user.Current()
-		if err != nil {
-			log.Fatalf("can't get current user %v", err)
-			return
-		}
-		dir := filepath.Join(u.HomeDir, common.Dir)
+		dir := bbHome
 		if dirExists(dir) {
 			log.Infof("%s already exists", dir)
 			return

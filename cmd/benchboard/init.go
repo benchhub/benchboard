@@ -1,11 +1,8 @@
 package main
 
 import (
-	"os"
-	"path/filepath"
-
-	"github.com/benchhub/benchboard/pkg/common"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 var initCmd = &cobra.Command{
@@ -13,12 +10,7 @@ var initCmd = &cobra.Command{
 	Short: "create empty .benchboard directory",
 	Long:  "Create empty .benchboard directory",
 	Run: func(cmd *cobra.Command, args []string) {
-		cur, err := os.Getwd()
-		if err != nil {
-			log.Fatalf("can't get current directory %v", err)
-			return
-		}
-		dir := filepath.Join(cur, common.Dir)
+		dir := bbProject
 		if dirExists(dir) {
 			log.Infof("%s already exists", dir)
 			return
