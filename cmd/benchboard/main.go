@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/user"
 	"path/filepath"
+	"time"
 
 	"github.com/at15/go.ice/ice"
 	"github.com/benchhub/benchboard/pkg/common"
 	"github.com/benchhub/benchboard/pkg/util/logutil"
+	"github.com/pkg/errors"
 )
 
 const (
@@ -21,6 +24,7 @@ var (
 	app       *ice.App
 	bbHome    string
 	bbProject string
+	lockFile  string
 )
 
 func main() {
@@ -36,6 +40,7 @@ func main() {
 	// TODO: go.ice need to allow extra prerun since update root.PreRun would replace what is applied in go.ice
 	bbHome = join(userHome(), common.Dir)
 	bbProject = join(cwd(), common.Dir)
+	lockFile = join(cwd(), common.Dir, common.LockFile)
 	if err := root.Execute(); err != nil {
 		fmt.Println(os.Stderr, err)
 		os.Exit(1)
@@ -63,4 +68,27 @@ func cwd() string {
 
 func join(p ...string) string {
 	return filepath.Join(p...)
+}
+
+func acquireLock() error {
+	if fileExists(lockFile) {
+		return errors.Errorf("lock file %s already exists", lockFile)
+	}
+	content := fmt.Sprintf("locked at %s", time.Now())
+	if err := ioutil.WriteFile(lockFile, []byte(content), 0666); err != nil {
+		return errors.Wrap(err, "can't write lock file")
+	}
+	return nil
+}
+
+func releaseLock() {
+	if err := os.Remove(lockFile); err != nil {
+		log.Warnf("error removing lock file %v", err)
+	}
+}
+
+func acquireLockOrExit() {
+	if err := acquireLock(); err != nil {
+		log.Fatalf("lock file %s already exists, delete it if there are no other benchboard process running", lockFile)
+	}
 }

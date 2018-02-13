@@ -12,5 +12,7 @@ var runCmd = &cobra.Command{
 	Long:  "Run specific benchmark based on config",
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Infof("run %s", join(bbProject, common.ConfigFile))
+		acquireLockOrExit()
+		releaseLock()
 	},
 }

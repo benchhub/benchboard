@@ -24,9 +24,18 @@ var initCmd = &cobra.Command{
 	},
 }
 
+// TODO: use gommon fsutil.DirExists
 func dirExists(path string) bool {
 	if info, err := os.Stat(path); err == nil {
 		return info.IsDir()
+	}
+	return false
+}
+
+// TODO: use gommon fsutil.FileExists
+func fileExists(path string) bool {
+	if info, err := os.Stat(path); err == nil {
+		return !info.IsDir()
 	}
 	return false
 }
