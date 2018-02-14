@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/dyweb/gommon/util/fsutil"
+	"github.com/spf13/cobra"
 )
 
 var initCmd = &cobra.Command{
@@ -11,7 +13,7 @@ var initCmd = &cobra.Command{
 	Long:  "Create empty .benchboard directory",
 	Run: func(cmd *cobra.Command, args []string) {
 		dir := bbProject
-		if dirExists(dir) {
+		if fsutil.DirExists(dir) {
 			log.Infof("%s already exists", dir)
 			return
 		}
@@ -22,20 +24,4 @@ var initCmd = &cobra.Command{
 		// TODO: create file based on templates etc.
 		log.Infof("local benchboard initialized to %s", dir)
 	},
-}
-
-// TODO: use gommon fsutil.DirExists
-func dirExists(path string) bool {
-	if info, err := os.Stat(path); err == nil {
-		return info.IsDir()
-	}
-	return false
-}
-
-// TODO: use gommon fsutil.FileExists
-func fileExists(path string) bool {
-	if info, err := os.Stat(path); err == nil {
-		return !info.IsDir()
-	}
-	return false
 }

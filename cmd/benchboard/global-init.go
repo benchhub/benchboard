@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/dyweb/gommon/util/fsutil"
 	"github.com/spf13/cobra"
 )
 
@@ -12,7 +13,7 @@ var globalInitCmd = &cobra.Command{
 	Long:  "Create user home .benchboard directory",
 	Run: func(cmd *cobra.Command, args []string) {
 		dir := bbHome
-		if dirExists(dir) {
+		if fsutil.DirExists(dir) {
 			log.Infof("%s already exists", dir)
 			return
 		}

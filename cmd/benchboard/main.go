@@ -9,9 +9,11 @@ import (
 	"time"
 
 	"github.com/at15/go.ice/ice"
+	"github.com/dyweb/gommon/util/fsutil"
+	"github.com/pkg/errors"
+
 	"github.com/benchhub/benchboard/pkg/common"
 	"github.com/benchhub/benchboard/pkg/util/logutil"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -71,7 +73,7 @@ func join(p ...string) string {
 }
 
 func acquireLock() error {
-	if fileExists(lockFile) {
+	if fsutil.FileExists(lockFile) {
 		return errors.Errorf("lock file %s already exists", lockFile)
 	}
 	content := fmt.Sprintf("locked at %s", time.Now())
